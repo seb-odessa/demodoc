@@ -1,18 +1,15 @@
-//! Demo library. This is a crate level description
+//! A Demo library
 
-/// Foo struct with the some payload
-pub struct Foo{
-    /// The payload contains payload of the structure
-    payload : String
-}
+/// a Foo struct
+pub struct Foo{ name : String }
 
-pub fn get_true() -> bool {
-    //! This function will return true
-    return true;
-}
+/// This function always returns true
+pub fn get_true() -> bool { return true; }
 
-#[test]
-fn it_works() 
-{
-//! Recalibrate a pesky universe (this is also a doc comment, like above,
+/// The trait HasName
+pub trait HasName { fn name(&self) -> String; }
+
+/// The implementation of the HasName name for Foo
+impl HasName for Foo {
+    fn name(&self) -> String { return self.name.clone(); }
 }

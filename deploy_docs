@@ -2,10 +2,13 @@
 
 WD=$(pwd) 
 REV=$(git rev-parse --short HEAD)
+PROJ=$(basename $(git rev-parse --show-toplevel))
 DOC_TARGET=../seb-odessa.github.io/
 
+echo ${BASH_SOURCE[0]}
+
 cargo doc
-rsync -vr ./target/doc/* ${DOC_TARGET}
+rsync -vr ./target/doc/* ${DOC_TARGET}/${PROJ}
 
 cd ${DOC_TARGET}
 git add -A .
