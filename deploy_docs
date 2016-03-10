@@ -1,0 +1,14 @@
+#!/bin/bash
+
+WD=$(pwd) 
+REV=$(git rev-parse --short HEAD)
+DOC_TARGET=../seb-odessa.github.io/
+
+cargo doc
+rsync -vr ./target/doc/* ${DOC_TARGET}
+
+cd ${DOC_TARGET}
+git add -A .
+git commit -m "Updates documentation from $REV revision"
+git push
+cd $WD
